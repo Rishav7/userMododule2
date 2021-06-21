@@ -48,11 +48,11 @@ const authUser = asyncHandler(async (req, res) => {
 
   if (user && (await user.matchPassword(password))) {
     res.send({
-       _id: user._id,
+      _id: user._id,
       name: user.name,
       photo: user.photo,
-      // email: user.email,
-      // isAdmin: user.isAdmin,
+     email: user.email,
+       isAdmin: user.isAdmin,
       token: generateToken(user._id),
     })
   } else {
@@ -111,14 +111,14 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 })
 
-const uploadProfilePic = asyncHandler(async (req, res, next) => {
-  // find the user .. id;
+const uploadProfilePic = asyncHandler(async (req, res) => {
+
   let user = await User.findById(req.params.id);
-  if (!user) return next({ status: 404, message: 'User not found' })
+  if (!user) return({ status: 404, message: 'User not found' })
 
-  if (!req.files) return next({ status: 404, message: 'Please upload file' })
+  if (!req.files) return ({ status: 404, message: 'Please upload file' })
 
-  // file instance
+
   const file = req.files.file
 
   console.log(file.name);
@@ -126,13 +126,18 @@ const uploadProfilePic = asyncHandler(async (req, res, next) => {
 
   console.log(file.name);
 
-  file.mv(`${process.env.FILE_UPLOADS_DIR}${file.name}`, async (err) => {
-    if (err) return next({ status: 500, message: 'Cant upload file' })
+  file.mv(`${process.env.FILE_UPLOADS_DIR} ${file.name}`, async (err) => {
+    console.log("sdklfh")
+    if (err)
+      return
+    ({
+      status: 500,
+      message: 'Cant upload file'
+    })
 
     const result = await User.findByIdAndUpdate(req.params.id, { photo: file.name });
     res.json({ success: true, data: file.name })
   })
 })
 
-
-export { authUser, registerUser, getUserProfile, updateUserProfile,uploadProfilePic }
+export { authUser, registerUser, getUserProfile, updateUserProfile, uploadProfilePic }

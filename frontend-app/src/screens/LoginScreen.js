@@ -13,6 +13,38 @@ const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+ 
+  const [emailError, setEmailError] = useState(true)
+  const [passwordError, setPasswordError] = useState(true)
+
+  
+
+  const onEmailChange = (event) => {
+    var emailValue = (event.target.value);
+    const expression = new RegExp('^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$');
+    // console.log(nameValue);
+    if (!(expression.test(emailValue))) {
+      setEmail(emailValue)
+      setEmailError(false)
+    }
+    else {
+      setEmail(emailValue)
+      setEmailError(true)
+    }
+  }
+  const onPasswordChange = (event) => {
+    var contactValue = (event.target.value);
+    const expression = new RegExp('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$');
+    // console.log(nameValue);
+    if (!(expression.test(contactValue))) {
+      setPassword(contactValue)
+      setPasswordError(false)
+    }
+    else {
+      setPassword(contactValue)
+      setPasswordError(true)
+    }
+  }
   //use Dispatch
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.userLogin)
@@ -34,7 +66,7 @@ const LoginScreen = ({ location, history }) => {
     if (userInfo) {
       history.push(redirect)
     }
-  }, [dispatch, userInfo, redirect,history])
+  }, [dispatch, userInfo, redirect, history])
 
   return (
     <FormContainer >
@@ -48,8 +80,10 @@ const LoginScreen = ({ location, history }) => {
             type='email'
             placeholder='Enter Email Address'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={onEmailChange}
           ></Form.Control>
+          {!emailError && <Form.Text className="text-danger">
+            Please Enter Valid Email (test@gmail.com)  </Form.Text>}
         </Form.Group>
 
         <Form.Group controlId='password'>
@@ -58,15 +92,17 @@ const LoginScreen = ({ location, history }) => {
             type='password'
             placeholder='Enter Password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={onPasswordChange}
           ></Form.Control>
+            {!passwordError && <Form.Text className="text-danger">
+            Please Enter Valid password (test@0t) </Form.Text>}
         </Form.Group>
         <br />
-        <Button type='submit' variant='primary'>
-        Sign In
-      </Button>
+        <Button type='submit' variant='primary' >
+          Sign In
+        </Button>
       </Form>
-     
+
       <Row className='py-3'>
         <Col>
           NewUser?

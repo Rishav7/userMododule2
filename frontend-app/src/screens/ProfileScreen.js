@@ -10,7 +10,7 @@ import { getUserDetails, updateUserProfile } from '../actions/userActions'
 
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 
-const ProfileScreen = ({ location, history }) => {
+const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -66,7 +66,7 @@ const ProfileScreen = ({ location, history }) => {
         ) : (
           <Form onSubmit={submitHandler}>
 
-{/* 
+
             <Figure>
               <Col xs={6} md={4}>
                 <Image 
@@ -74,8 +74,9 @@ const ProfileScreen = ({ location, history }) => {
                  height={180}
                 src="https://cdn.pixabay.com/photo/2017/09/27/20/40/event-2793372_960_720.jpg" roundedCircle />
               </Col>
+              
           
-            </Figure> */}
+            </Figure>
 
 
             <Form.Group controlId='name'>

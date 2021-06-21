@@ -7,6 +7,8 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      useFindAndModify: false
+      
     })
     console.log(`MongoDB connected:${process.env.DB_HOST}:${process.env.PORT}-->db name ${process.env.DB_NAME}`.rainbow)
   } catch (error) {

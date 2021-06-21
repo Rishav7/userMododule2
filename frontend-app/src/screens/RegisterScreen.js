@@ -16,6 +16,67 @@ const RegisterScreen = ({ location, history }) => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
 
+
+  const [emailError, setEmailError] = useState(true)
+  const [passwordError, setPasswordError] = useState(true)
+  const [nameError, setNameError] = useState(true)
+  const [confirmPasswordError, setConfirmPasswordError] = useState(true)
+
+
+
+  const onNameChange = (event) => {
+    var nameValue = (event.target.value)
+    const expression = new RegExp('^[a-zA-Z]{1}[a-zA-Z0-9\\s]{2,30}$');
+  
+    if (!(expression.test(nameValue))) {
+        setName(nameValue)
+        setNameError(false)
+    }
+    else {
+        setName(nameValue)
+        setNameError(true)
+    }
+}
+  const onEmailChange = (event) => {
+    var emailValue = (event.target.value);
+    const expression = new RegExp('^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$');
+   
+    if (!(expression.test(emailValue))) {
+      setEmail(emailValue)
+      setEmailError(false)
+    }
+    else {
+      setEmail(emailValue)
+      setEmailError(true)
+    }
+  }
+  const onPasswordChange = (event) => {
+    var contactValue = (event.target.value);
+    const expression = new RegExp('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$');
+    
+    if (!(expression.test(contactValue))) {
+      setPassword(contactValue)
+      setPasswordError(false)
+    }
+    else {
+      setPassword(contactValue)
+      setPasswordError(true)
+    }
+  }
+  const onConfirmPasswordChange = (event) => {
+    var contactValue = (event.target.value);
+    const expression = new RegExp('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$');
+    
+    if (!(expression.test(contactValue))) {
+      setConfirmPassword(contactValue)
+      setConfirmPasswordError(false)
+    }
+    else {
+      setConfirmPassword(contactValue)
+      setConfirmPasswordError(true)
+    }
+  }
+
   //use Dispatch
   const dispatch = useDispatch()
   const userRegister = useSelector((state) => state.userRegister)
@@ -56,8 +117,10 @@ const RegisterScreen = ({ location, history }) => {
             type='name'
             placeholder='Enter name'
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={onNameChange}
           ></Form.Control>
+            {!nameError && <Form.Text className="text-danger">
+            Please Enter Valid Name (min char:3) </Form.Text>}
         </Form.Group>
 
 
@@ -67,8 +130,10 @@ const RegisterScreen = ({ location, history }) => {
             type='email'
             placeholder='Enter email'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={onEmailChange}
           ></Form.Control>
+            {!emailError && <Form.Text className="text-danger">
+            Please Enter Valid Email (test@gmail.com)  </Form.Text>}
         </Form.Group>
 
         <Form.Group controlId='password'>
@@ -77,8 +142,10 @@ const RegisterScreen = ({ location, history }) => {
             type='password'
             placeholder='Enter password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={onPasswordChange}
           ></Form.Control>
+          {!passwordError && <Form.Text className="text-danger">
+            Please Enter password (test@0t) </Form.Text>}
         </Form.Group>
 
         <Form.Group controlId='confirmPassword'>
@@ -87,8 +154,10 @@ const RegisterScreen = ({ location, history }) => {
             type='password'
             placeholder='Confirm password'
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={onConfirmPasswordChange}
           ></Form.Control>
+           {!confirmPasswordError && <Form.Text className="text-danger">
+            Please match the confirm password (test@0t) </Form.Text>}
         </Form.Group>
 
         <br />

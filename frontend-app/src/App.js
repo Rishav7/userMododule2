@@ -22,7 +22,7 @@ const App = () => {
          <Route path='/login' component={LoginScreen}></Route>
          <Route path='/register' component={RegisterScreen}></Route>
          <Route path='/profile' component={ProfileScreen} />
-         {/* <Route path='/' component={Homepage} /> */}
+        
 
          </Container>
       </main>
