@@ -26,7 +26,7 @@ const Headers = () => {
           <Nav className='mr-auto'>
               <LinkContainer to='/cart'>
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> Cart
+                  <i className='fas fa-shopping-cart'></i> Wishlist
                 </Nav.Link>
               </LinkContainer>
 

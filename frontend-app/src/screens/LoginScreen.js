@@ -73,6 +73,7 @@ const LoginScreen = ({ location, history }) => {
       <h1>Sign In</h1>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader></Loader>}
+
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>
           <Form.Label>Email</Form.Label>
@@ -98,7 +99,8 @@ const LoginScreen = ({ location, history }) => {
             Please Enter Valid password (test@0t) </Form.Text>}
         </Form.Group>
         <br />
-        <Button type='submit' variant='primary' >
+        {/*   */}
+        <Button type='submit' variant='primary' disabled={!passwordError &&  !emailError}>
           Sign In
         </Button>
       </Form>

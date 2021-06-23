@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Form, Button, Figure, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { LinkContainer } from 'react-router-bootstrap'
+
 
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -74,8 +74,7 @@ const ProfileScreen = ({ history }) => {
                  height={180}
                 src="https://cdn.pixabay.com/photo/2017/09/27/20/40/event-2793372_960_720.jpg" roundedCircle />
               </Col>
-              
-          
+                        
             </Figure>
 
 
