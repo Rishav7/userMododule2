@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Row, Col, Form, Button, Figure, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
+/*Component imports*/
 
 import Message from '../components/Message'
 import Loader from '../components/Loader'
