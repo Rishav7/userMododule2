@@ -3,9 +3,7 @@ import { Row, Col, Form, Button, Figure, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
 /*Component imports*/
-// rishav test rishav test2
-// rishav testing test3
-// swarnim testing ownership check again
+//Rishav sdkjfhjksdhfkhskejfhksdhf
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 
