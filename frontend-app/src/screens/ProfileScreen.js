@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Row, Col, Form, Button, Figure, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
-/*Component imports*/
-//Rishav sdkjfhjksdhfkhskejfhksdhfsdfsd
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 
@@ -14,6 +12,7 @@ import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [photo, setPhoto] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
@@ -39,6 +38,7 @@ const ProfileScreen = ({ history }) => {
       } else {
         setName(user.name)
         setEmail(user.email)
+        setPhoto(user.photo)
       }
     }
   }, [dispatch, history, userInfo, user, success])
@@ -48,11 +48,11 @@ const ProfileScreen = ({ history }) => {
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      dispatch(updateUserProfile({ id: user._id, name, email, password }))
+      dispatch(updateUserProfile({ id: user._id, name, email, password, photo}))
       console.log('clicked')
     }
   }
-
+  const srcp = 'http://localhost:5000/dp/'+photo
   return (
     <Row>
       <Col md={3}>
@@ -69,12 +69,13 @@ const ProfileScreen = ({ history }) => {
 
 
             <Figure>
-              <Col xs={6} md={4}>
-                <Image
+              {/*<Col xs={6} md={4}>*/}
+                {/*<Image
                   width={200}
                   height={180}
-                  src="https://cdn.pixabay.com/photo/2017/09/27/20/40/event-2793372_960_720.jpg" roundedCircle />
-              </Col>
+                  src="https://cdn.pixabay.com/photo/2017/09/27/20/40/event-2793372_960_720.jpg" roundedCircle />*/}
+              <Image src={srcp} rounded fluid />
+              {/*</Col>*/}
 
             </Figure>
 
