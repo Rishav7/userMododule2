@@ -3,6 +3,7 @@ import { Row, Col, Form, Button, Figure, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
 /*Component imports*/
+// rishav test
 
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -70,12 +71,12 @@ const ProfileScreen = ({ history }) => {
 
             <Figure>
               <Col xs={6} md={4}>
-                <Image 
-                 width={200}
-                 height={180}
-                src="https://cdn.pixabay.com/photo/2017/09/27/20/40/event-2793372_960_720.jpg" roundedCircle />
+                <Image
+                  width={200}
+                  height={180}
+                  src="https://cdn.pixabay.com/photo/2017/09/27/20/40/event-2793372_960_720.jpg" roundedCircle />
               </Col>
-                        
+
             </Figure>
 
 
