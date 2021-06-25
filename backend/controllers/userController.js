@@ -115,33 +115,42 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 })
 
-const uploadProfilePic = asyncHandler(async (req, res) => {
+const uploadProfilePic = asyncHandler(async(req, res, next)=>{
 
+  // find the user .. id;
+  console.log("Initiating a handshake.....".red.bold)
   let user = await User.findById(req.params.id);
-  if (!user) return({ status: 404, message: 'User not found' })
-
-  if (!req.files) return ({ status: 404, message: 'Please upload file' })
 
 
+  console.log("Found User......".green.bold)
+  console.log(user)
+  if(!user) return next({status:404, message: 'User not found'})
+  
+  if(!req.files) return next({status:404, message: 'Please upload file'})
+
+   // file instance
   const file = req.files.file
 
-  console.log(file.name);
+  console.log("1",file.name);
+  console.log(user._id);
+  console.log(path.parse(file.name).ext)
   file.name = `pic_${user._id}${path.parse(file.name).ext}`
 
-  console.log(file.name);
-
-  file.mv(`${process.env.FILE_UPLOADS_DIR} ${file.name}`, async (err) => {
-    console.log("sdklfh")
-    if (err)
-      return
-    ({
-      status: 500,
-      message: 'Cant upload file'
-    })
-
-    const result = await User.findByIdAndUpdate(req.params.id, { photo: file.name });
-    res.json({ success: true, data: file.name })
+  console.log("2",file.name);
+ 
+  file.mv(`backend/public/uploads/${file.name}`, async(err)=>{
+    console.log(err)
+       if (err) return next({status:500, message: 'Cant upload file'})
+       console.log("inside");
+       const result  = await User.findByIdAndUpdate(req.params.id, {photo: file.name});
+       res.json({success: true, data: file.name})
   })
+
+  
+   // mv to public/uploads
+
+   // update the user model with path
+
 })
 
 export { authUser, registerUser, getUserProfile, updateUserProfile, uploadProfilePic }

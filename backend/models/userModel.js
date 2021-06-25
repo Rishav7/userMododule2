@@ -26,6 +26,10 @@ const userSchema = mongoose.Schema({
         required: true,
         default: false
     },
+    photo: {
+        type: String,
+        default: 'no-photo.jpg'
+    },
 }, {
     timestamps: true
 })
