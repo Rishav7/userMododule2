@@ -48,11 +48,11 @@ const ProfileScreen = ({ history }) => {
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      dispatch(updateUserProfile({ id: user._id, name, email, password, photo}))
+      dispatch(updateUserProfile({ id: user._id, name, email, password, photo }))
       console.log('clicked')
     }
   }
-  const srcp = 'http://localhost:5000/dp/'+photo
+  const srcp = 'http://localhost:5000/dp/' + photo
   return (
     <Row>
       <Col md={3}>
@@ -70,7 +70,7 @@ const ProfileScreen = ({ history }) => {
 
             <Figure>
               {/*<Col xs={6} md={4}>*/}
-                {/*<Image
+              {/*<Image
                   width={200}
                   height={180}
                   src="https://cdn.pixabay.com/photo/2017/09/27/20/40/event-2793372_960_720.jpg" roundedCircle />*/}
